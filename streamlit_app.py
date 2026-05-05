@@ -29,46 +29,235 @@ custom_css = """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
     * { font-family: 'Poppins', sans-serif; }
+    
     .stApp {
-        background-image: url('https://i.postimg.cc/TYhXd0gG/d0a72a8cea5ae4978b21e04a74f0b0ee.jpg');
-        background-size: cover; background-position: center; background-attachment: fixed;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #0a0a0a 100%);
+        position: relative;
     }
+    
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    .stApp::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 0;
+    }
+    
     .main .block-container {
-        background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px);
-        border-radius: 12px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 24px;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+        position: relative;
+        z-index: 1;
     }
+    
     .main-header {
-        background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-        padding: 1rem; border-radius: 12px; text-align: center; margin-bottom: 1rem;
+        background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        animation: glowPulse 2s ease-in-out infinite;
     }
+    
+    @keyframes glowPulse {
+        0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); border-color: rgba(0, 255, 255, 0.4); }
+        50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.4); border-color: rgba(0, 255, 255, 0.7); }
+    }
+    
     .main-header h1 {
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        font-size: 1.8rem; font-weight: 700; margin: 0;
+        background: linear-gradient(135deg, #00ffff, #ff00ff, #00ff88);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradientShift 3s ease infinite;
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0;
+        text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
     }
+    
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
     .stButton>button {
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        color: white; border: none; border-radius: 8px; padding: 0.6rem 1.5rem;
-        font-weight: 600; width: 100%;
+        background: linear-gradient(135deg, #00ffff, #ff00ff);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        font-weight: 700;
+        width: 100%;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     }
-    .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stNumberInput>div>div>input {
-        background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 8px; color: white; padding: 0.6rem;
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+        background: linear-gradient(135deg, #ff00ff, #00ffff);
     }
-    label { color: white !important; font-weight: 500 !important; font-size: 13px !important; }
+    
+    .stTextInput>div>div>input, 
+    .stTextArea>div>div>textarea, 
+    .stNumberInput>div>div>input {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        border-radius: 10px;
+        color: #00ffcc;
+        padding: 0.7rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput>div>div>input:focus, 
+    .stTextArea>div>div>textarea:focus, 
+    .stNumberInput>div>div>input:focus {
+        border-color: #ff00ff;
+        box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+        outline: none;
+    }
+    
+    label {
+        color: #00ffff !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
+    
     .console-box {
-        background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(78, 205, 196, 0.5);
-        border-radius: 8px; padding: 10px; font-family: 'Courier New', monospace;
-        font-size: 11px; color: #00ff88; max-height: 200px; overflow-y: auto;
+        background: rgba(0, 0, 0, 0.85);
+        border: 1px solid rgba(0, 255, 255, 0.6);
+        border-radius: 12px;
+        padding: 12px;
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        color: #00ffcc;
+        max-height: 200px;
+        overflow-y: auto;
         min-height: 100px;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
     }
-    .log-line { padding: 3px 6px; border-left: 2px solid #4ecdc4; margin: 2px 0; background: rgba(0,0,0,0.3); }
-    .status-running { background: linear-gradient(135deg, #84fab0, #8fd3f4); padding: 8px; border-radius: 8px; color: white; text-align: center; font-weight: 600; }
-    .status-stopped { background: linear-gradient(135deg, #fa709a, #fee140); padding: 8px; border-radius: 8px; color: white; text-align: center; font-weight: 600; }
-    [data-testid="stMetricValue"] { color: #4ecdc4; font-weight: 700; }
-    .session-id-box { background: linear-gradient(45deg, #667eea, #764ba2); padding: 10px 15px; border-radius: 8px; color: white; font-weight: 600; font-family: monospace; text-align: center; margin: 10px 0; }
-    .active-sessions { background: rgba(0,0,0,0.4); border: 1px solid rgba(78, 205, 196, 0.5); border-radius: 10px; padding: 15px; margin-top: 20px; }
-    .session-row { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 6px; margin: 5px 0; display: flex; justify-content: space-between; align-items: center; }
+    
+    .log-line {
+        padding: 4px 8px;
+        border-left: 3px solid #00ffff;
+        margin: 4px 0;
+        background: rgba(0, 255, 255, 0.05);
+        color: #00ffcc;
+    }
+    
+    .status-running {
+        background: linear-gradient(135deg, #00ff88, #00ffff);
+        padding: 10px;
+        border-radius: 10px;
+        color: #000;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation: pulse 1s ease-in-out infinite;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    }
+    
+    .status-stopped {
+        background: linear-gradient(135deg, #ff0066, #ff00ff);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 0 0 20px rgba(255, 0, 102, 0.5);
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; transform: scale(0.98); }
+    }
+    
+    [data-testid="stMetricValue"] {
+        color: #00ffff;
+        font-weight: 800;
+        font-size: 2rem;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #ff00ff !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .active-sessions {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(0, 255, 255, 0.4);
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 20px;
+        backdrop-filter: blur(5px);
+    }
+    
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #00ffff, #ff00ff);
+        border-radius: 10px;
+    }
+    
+    hr {
+        border-color: rgba(0, 255, 255, 0.3);
+    }
+    
+    code {
+        color: #00ffff !important;
+        background: rgba(0, 0, 0, 0.6) !important;
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+        border: 1px solid rgba(0, 255, 255, 0.3);
+    }
 </style>
 """
 
